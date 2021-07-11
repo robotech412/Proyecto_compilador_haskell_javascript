@@ -5,7 +5,16 @@
  */
 package proyecto_compilador;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.GroupLayout;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +40,7 @@ public class Panel_principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        textArea_mostrar_codigo = new javax.swing.JTextArea();
+        textArea_mostrar_codigo_hs = new javax.swing.JTextArea();
         titulo_ubicacion_haskell = new javax.swing.JLabel();
         titulo_ubicacion_js = new javax.swing.JLabel();
         txt_ubicacion_hs = new javax.swing.JTextField();
@@ -39,16 +48,19 @@ public class Panel_principal extends javax.swing.JFrame {
         btn_abrir_haskell = new javax.swing.JButton();
         btn_abrir_js = new javax.swing.JButton();
         btn_conversion = new javax.swing.JButton();
-        titulo_textarea = new javax.swing.JLabel();
+        titulo_textarea_haskell = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textArea_mostrar_codigo_js = new javax.swing.JTextArea();
+        titulo_textarea_js = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setMaximumSize(new java.awt.Dimension(700, 750));
+        setMinimumSize(new java.awt.Dimension(700, 750));
+        setPreferredSize(new java.awt.Dimension(700, 750));
 
-        textArea_mostrar_codigo.setColumns(20);
-        textArea_mostrar_codigo.setRows(5);
-        jScrollPane1.setViewportView(textArea_mostrar_codigo);
+        textArea_mostrar_codigo_hs.setColumns(20);
+        textArea_mostrar_codigo_hs.setRows(5);
+        jScrollPane1.setViewportView(textArea_mostrar_codigo_hs);
 
         titulo_ubicacion_haskell.setText("ubicacion archivo haskell");
 
@@ -68,34 +80,56 @@ public class Panel_principal extends javax.swing.JFrame {
         });
 
         btn_abrir_js.setText("Abrir");
+        btn_abrir_js.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_abrir_jsActionPerformed(evt);
+            }
+        });
 
         btn_conversion.setText("Ejecutar Compilacion");
 
-        titulo_textarea.setText("visualizacion archivo");
+        titulo_textarea_haskell.setText("visualizacion archivo haskell");
+
+        textArea_mostrar_codigo_js.setColumns(20);
+        textArea_mostrar_codigo_js.setRows(5);
+        jScrollPane2.setViewportView(textArea_mostrar_codigo_js);
+
+        titulo_textarea_js.setText("visualizacion archivo javascript");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(titulo_textarea_haskell)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titulo_textarea)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103)
-                        .addComponent(btn_conversion))
-                    .addComponent(titulo_ubicacion_js)
-                    .addComponent(titulo_ubicacion_haskell)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_ubicacion_hs, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_ubicacion_js, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(titulo_textarea_js))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(btn_conversion)
+                        .addGap(55, 55, 55))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_abrir_js)
-                            .addComponent(btn_abrir_haskell))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                            .addComponent(titulo_ubicacion_js)
+                            .addComponent(titulo_ubicacion_haskell)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_ubicacion_hs, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ubicacion_js, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_abrir_haskell)
+                                    .addComponent(btn_abrir_js)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,21 +142,25 @@ public class Panel_principal extends javax.swing.JFrame {
                     .addComponent(btn_abrir_haskell))
                 .addGap(18, 18, 18)
                 .addComponent(titulo_ubicacion_js)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_ubicacion_js, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_abrir_js))
+                .addGap(27, 27, 27)
+                .addComponent(titulo_textarea_haskell)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_conversion)
-                        .addGap(121, 121, 121))
+                        .addGap(220, 220, 220))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_ubicacion_js, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_abrir_js))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(titulo_textarea)
-                        .addGap(18, 18, 18)
+                        .addGap(37, 37, 37)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18)
+                        .addComponent(titulo_textarea_js)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(45, Short.MAX_VALUE))))
         );
 
         pack();
@@ -133,8 +171,29 @@ public class Panel_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ubicacion_hsActionPerformed
 
     private void btn_abrir_haskellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_haskellActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(null);
+        File archivo = fc.getSelectedFile();
+        try{
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String texto="";
+            String linea="";
+            while(((linea=br.readLine())!=null)){
+                texto+=linea+"\n";
+            }
+                textArea_mostrar_codigo_hs.setText(texto);
+                JOptionPane.showMessageDialog(null,"Archivo leido correctamente");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_abrir_haskellActionPerformed
+
+    private void btn_abrir_jsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_jsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_abrir_jsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,8 +239,11 @@ public class Panel_principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_abrir_js;
     private javax.swing.JButton btn_conversion;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea textArea_mostrar_codigo;
-    private javax.swing.JLabel titulo_textarea;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea textArea_mostrar_codigo_hs;
+    private javax.swing.JTextArea textArea_mostrar_codigo_js;
+    private javax.swing.JLabel titulo_textarea_haskell;
+    private javax.swing.JLabel titulo_textarea_js;
     private javax.swing.JLabel titulo_ubicacion_haskell;
     private javax.swing.JLabel titulo_ubicacion_js;
     private javax.swing.JTextField txt_ubicacion_hs;
