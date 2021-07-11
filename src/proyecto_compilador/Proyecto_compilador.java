@@ -15,6 +15,8 @@ public class Proyecto_compilador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Panel_principal Panel = new Panel_principal();
+        Panel.setVisible(true);
         // TODO code application logic here
     }
     
