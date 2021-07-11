@@ -32,26 +32,27 @@ public class Panel_principal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea_mostrar_codigo = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        titulo_ubicacion_haskell = new javax.swing.JLabel();
+        titulo_ubicacion_js = new javax.swing.JLabel();
         txt_ubicacion_hs = new javax.swing.JTextField();
         txt_ubicacion_js = new javax.swing.JTextField();
         btn_abrir_haskell = new javax.swing.JButton();
         btn_abrir_js = new javax.swing.JButton();
         btn_conversion = new javax.swing.JButton();
+        titulo_textarea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 400));
-        setMinimumSize(new java.awt.Dimension(800, 400));
-        setPreferredSize(new java.awt.Dimension(800, 400));
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         textArea_mostrar_codigo.setColumns(20);
         textArea_mostrar_codigo.setRows(5);
         jScrollPane1.setViewportView(textArea_mostrar_codigo);
 
-        jLabel1.setText("ubicacion archivo haskell");
+        titulo_ubicacion_haskell.setText("ubicacion archivo haskell");
 
-        jLabel2.setText("ubicacion archivo javascript");
+        titulo_ubicacion_js.setText("ubicacion archivo javascript");
 
         txt_ubicacion_hs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +71,8 @@ public class Panel_principal extends javax.swing.JFrame {
 
         btn_conversion.setText("Ejecutar Compilacion");
 
+        titulo_textarea.setText("visualizacion archivo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,12 +80,13 @@ public class Panel_principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titulo_textarea)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(103, 103, 103)
                         .addComponent(btn_conversion))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
+                    .addComponent(titulo_ubicacion_js)
+                    .addComponent(titulo_ubicacion_haskell)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_ubicacion_hs, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,26 +101,28 @@ public class Panel_principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1)
+                .addComponent(titulo_ubicacion_haskell)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ubicacion_hs, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_abrir_haskell))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(titulo_ubicacion_js)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_conversion)
+                        .addGap(121, 121, 121))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_ubicacion_js, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_abrir_js))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(titulo_textarea)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_conversion)
-                        .addGap(121, 121, 121))))
+                        .addGap(18, 18, 18))))
         );
 
         pack();
@@ -173,10 +179,11 @@ public class Panel_principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_abrir_haskell;
     private javax.swing.JButton btn_abrir_js;
     private javax.swing.JButton btn_conversion;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea textArea_mostrar_codigo;
+    private javax.swing.JLabel titulo_textarea;
+    private javax.swing.JLabel titulo_ubicacion_haskell;
+    private javax.swing.JLabel titulo_ubicacion_js;
     private javax.swing.JTextField txt_ubicacion_hs;
     private javax.swing.JTextField txt_ubicacion_js;
     // End of variables declaration//GEN-END:variables
