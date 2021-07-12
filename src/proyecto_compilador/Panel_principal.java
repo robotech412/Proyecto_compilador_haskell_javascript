@@ -6,9 +6,11 @@
 package proyecto_compilador;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +23,18 @@ import javax.swing.JOptionPane;
  * @author dennis
  */
 public class Panel_principal extends javax.swing.JFrame {
+
+    String nombreM = "suma";
+    String var1 = "var1";
+    String var2 = "var2";
+    int valorA = 2;
+    int valorB = 3;
+    String print = "";
+    String parA = "(";
+    String parB = ")";
+    String corcheteA = "{";
+    String corcheteB = "}";
+    String msj = "La suma es: +";
 
     /**
      * Creates new form Panel_principal
@@ -60,7 +74,7 @@ public class Panel_principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textArea_mostrar_codigo_hs);
 
         titulo_ubicacion_haskell.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titulo_ubicacion_haskell.setText("CONVERTIDOR DE OPERACIONES DE DE LENGUAJE HASKELL A JAVASCRIPT");
+        titulo_ubicacion_haskell.setText("CONVERTIDOR DE OPERACIONES DE LENGUAJE HASKELL A JAVASCRIPT");
 
         btn_abrir_haskell.setText("Abrir");
         btn_abrir_haskell.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +108,7 @@ public class Panel_principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(titulo_ubicacion_haskell)
@@ -144,16 +158,16 @@ public class Panel_principal extends javax.swing.JFrame {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(null);
         File archivo = fc.getSelectedFile();
-        try{
+        try {
             FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
-            String texto="";
-            String linea="";
-            while(((linea=br.readLine())!=null)){
-                texto+=linea+"\n";
+            String texto = "";
+            String linea = "";
+            while (((linea = br.readLine()) != null)) {
+                texto += linea + "\n";
             }
-                textArea_mostrar_codigo_hs.setText(texto);
-                JOptionPane.showMessageDialog(null,"Archivo leido correctamente");
+            textArea_mostrar_codigo_hs.setText(texto);
+            JOptionPane.showMessageDialog(null, "Archivo leido correctamente");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -161,13 +175,50 @@ public class Panel_principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_abrir_haskellActionPerformed
 
-    private void btn_conversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conversionActionPerformed
-       
+    public void escribirFichero() {
+        String sFichero = "suma.js";
+        File fichero = new File(sFichero);
+        if (fichero.exists()) {
+            System.out.println("El fichero " + sFichero + " existe");
+        } else {
+            System.out.println("El fichero no existe");
+            try {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(sFichero));
+                bw.write("function " + nombreM + "()" + corcheteA + "\n");
+                bw.write("var " + var1 + "=" + valorA + ";" + "\n");
+                bw.write("var " + var2 + "=" + valorB + ";" + "\n");
+                bw.write("suma " + "=" + var1 + "+" + var2 + ";" + "\n");
+                bw.write("alert" + parA + "" + msj + " " + "suma" + parB + "\n");
+                bw.write(corcheteB);
+                bw.flush();
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
-        
-        
-        
-        
+    public void obtenertxt_conversion(String nombreArchivo) {
+        File archivo = new File(nombreArchivo);
+        try {
+            FileReader fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String texto = "";
+            String linea = "";
+            while (((linea = br.readLine()) != null)) {
+                texto += linea + "\n";
+            }
+            textArea_mostrar_codigo_js.setText(texto);
+            //JOptionPane.showMessageDialog(null, "Archivo convertido correctamente");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Panel_principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void btn_conversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conversionActionPerformed
+        escribirFichero();
+        obtenertxt_conversion("suma.js");
     }//GEN-LAST:event_btn_conversionActionPerformed
 
     /**
