@@ -24,18 +24,18 @@ import javax.swing.JOptionPane;
  */
 public class Panel_principal extends javax.swing.JFrame {
 
-    String nombreM = "suma";
-    String var1 = "var1";
-    String var2 = "var2";
-    int valorA = 2; //ejemplo arreglo[2]
-    int valorB = 3;
+    //String nombreM = "suma";
+    //String var1 = "var1";
+    //String var2 = "var2";
+    //int valorA = 2; //ejemplo arreglo[2]
+    //int valorB = 3;
     String print = "";
     String parA = "(";
     String parB = ")";
     String corcheteA = "{";
     String corcheteB = "}";
     String msj = "El resultado es: +";
-    String arreglo[];
+    String arreglo[]; //variable para obtener las cadenas de texto de las variables de haskell
 
     /**
      * Creates new form Panel_principal
@@ -221,8 +221,12 @@ public class Panel_principal extends javax.swing.JFrame {
         }
     }
     private void btn_conversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conversionActionPerformed
+        if(textArea_mostrar_codigo_hs.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Seleccione primero el archivo","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
         escribirFichero();
         obtenertxt_conversion("operacion.js");
+        }
     }//GEN-LAST:event_btn_conversionActionPerformed
 
     /**
