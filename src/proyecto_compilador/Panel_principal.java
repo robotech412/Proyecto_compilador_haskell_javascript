@@ -27,14 +27,15 @@ public class Panel_principal extends javax.swing.JFrame {
     String nombreM = "suma";
     String var1 = "var1";
     String var2 = "var2";
-    int valorA = 2;
+    int valorA = 2; //ejemplo arreglo[2]
     int valorB = 3;
     String print = "";
     String parA = "(";
     String parB = ")";
     String corcheteA = "{";
     String corcheteB = "}";
-    String msj = "La suma es: +";
+    String msj = "El resultado es: +";
+    String arreglo[];
 
     /**
      * Creates new form Panel_principal
@@ -69,6 +70,7 @@ public class Panel_principal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(700, 750));
         setPreferredSize(new java.awt.Dimension(700, 750));
 
+        textArea_mostrar_codigo_hs.setEditable(false);
         textArea_mostrar_codigo_hs.setColumns(20);
         textArea_mostrar_codigo_hs.setRows(5);
         jScrollPane1.setViewportView(textArea_mostrar_codigo_hs);
@@ -93,6 +95,7 @@ public class Panel_principal extends javax.swing.JFrame {
         titulo_textarea_haskell.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         titulo_textarea_haskell.setText("Visualizacion archivo haskell");
 
+        textArea_mostrar_codigo_js.setEditable(false);
         textArea_mostrar_codigo_js.setColumns(20);
         textArea_mostrar_codigo_js.setRows(5);
         jScrollPane2.setViewportView(textArea_mostrar_codigo_js);
@@ -165,6 +168,7 @@ public class Panel_principal extends javax.swing.JFrame {
             String linea = "";
             while (((linea = br.readLine()) != null)) {
                 texto += linea + "\n";
+                arreglo= texto.split(" ");
             }
             textArea_mostrar_codigo_hs.setText(texto);
             JOptionPane.showMessageDialog(null, "Archivo leido correctamente");
@@ -184,11 +188,11 @@ public class Panel_principal extends javax.swing.JFrame {
             System.out.println("El fichero no existe");
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(sFichero));
-                bw.write("function " + nombreM + "()" + corcheteA + "\n");
-                bw.write("var " + var1 + "=" + valorA + ";" + "\n");
-                bw.write("var " + var2 + "=" + valorB + ";" + "\n");
-                bw.write("suma " + "=" + var1 + "+" + var2 + ";" + "\n");
-                bw.write("alert" + parA + "" + msj + " " + "suma" + parB + "\n");
+                bw.write("function " + arreglo[0] + "()" + corcheteA + "\n");
+                bw.write("var " + arreglo[4] + "=" + arreglo[6] + ";" + "\n");
+                bw.write("var " + arreglo[8] + "=" + arreglo[10] + ";" + "\n");
+                bw.write(arreglo[0] + "=" + arreglo[4] + arreglo[24] + arreglo[8] + ";" + "\n");
+                bw.write("alert" + parA + "" + msj + " " + arreglo[0] + parB + "\n");
                 bw.write(corcheteB);
                 bw.flush();
                 bw.close();
