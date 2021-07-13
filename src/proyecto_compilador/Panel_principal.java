@@ -168,7 +168,7 @@ public class Panel_principal extends javax.swing.JFrame {
             String linea = "";
             while (((linea = br.readLine()) != null)) {
                 texto += linea + "\n";
-                arreglo= texto.split(" ");
+                arreglo = texto.split(" ");
             }
             textArea_mostrar_codigo_hs.setText(texto);
             JOptionPane.showMessageDialog(null, "Archivo leido correctamente");
@@ -180,7 +180,7 @@ public class Panel_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_abrir_haskellActionPerformed
 
     public void escribirFichero() {
-        String sFichero = "suma.js";
+        String sFichero = "operacion.js";
         File fichero = new File(sFichero);
         if (fichero.exists()) {
             System.out.println("El fichero " + sFichero + " existe");
@@ -191,7 +191,7 @@ public class Panel_principal extends javax.swing.JFrame {
                 bw.write("function " + arreglo[0] + "()" + corcheteA + "\n");
                 bw.write("var " + arreglo[4] + "=" + arreglo[6] + ";" + "\n");
                 bw.write("var " + arreglo[8] + "=" + arreglo[10] + ";" + "\n");
-                bw.write(arreglo[0] + "=" + arreglo[4] + arreglo[24] + arreglo[8] + ";" + "\n");
+                bw.write(arreglo[0] + " = " + arreglo[4] + " " + arreglo[17] + " " + arreglo[8] + ";" + "\n");
                 bw.write("alert" + parA + "" + msj + " " + arreglo[0] + parB + "\n");
                 bw.write(corcheteB);
                 bw.flush();
@@ -222,7 +222,7 @@ public class Panel_principal extends javax.swing.JFrame {
     }
     private void btn_conversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conversionActionPerformed
         escribirFichero();
-        obtenertxt_conversion("suma.js");
+        obtenertxt_conversion("operacion.js");
     }//GEN-LAST:event_btn_conversionActionPerformed
 
     /**
